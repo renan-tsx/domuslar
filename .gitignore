@@ -1,6 +1,7 @@
 # compiled output
 /dist
 /node_modules
+/build
 
 # Logs
 logs
@@ -33,3 +34,19 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Docker
+
+.docker/*
+!.docker/entrypoint.sh
+!.docker/postres/Dockerfile
+
+# Envolviment
+
+.env
+.env.development
+.env.test
+
+# Typescript
+
+tsconfig.tsbuildinfo
