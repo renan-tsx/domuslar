@@ -3,16 +3,18 @@ export interface IUserProps {
   cpf: number;
   email: string;
   password: string;
-  perfil: string;
+  perfil?: string;
   address: {
     street: string;
+    number: string;
     city: string;
+    state: string;
     country: string;
     zipcode: string;
   };
-  active: boolean;
-  createAt: Date;
-  updateAt: Date;
+  active?: boolean;
+  createAt?: Date;
+  updateAt?: Date;
 }
 
 export class UserEntity {
