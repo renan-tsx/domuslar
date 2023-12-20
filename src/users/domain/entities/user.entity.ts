@@ -1,19 +1,22 @@
 import { Entity } from '@/shared/domain/entities/entity';
 
+export interface IAddress {
+  street: string;
+  number: string;
+  city: string;
+  state: string;
+  country: string;
+  zipcode: string;
+}
+
+export interface IOptionalAddress extends Partial<IAddress> {}
 export interface IUserProps {
   name: string;
   cpf: number;
   email: string;
   password: string;
   perfil: string;
-  address: {
-    street: string;
-    number: string;
-    city: string;
-    state: string;
-    country: string;
-    zipcode: string;
-  };
+  address: IAddress;
   active: boolean;
   createAt: Date;
   updateAt: Date;
@@ -31,6 +34,19 @@ export class UserEntity extends Entity<IUserProps> {
     this.props.perfil = this.props.perfil ?? 'SAS';
   }
 
+  // NOTE perfil
+  updatePerfil(value: string): void {
+    this.perfil = value;
+  }
+
+  get perfil() {
+    return this.props.perfil;
+  }
+
+  private set perfil(value: string) {
+    this.props.perfil = value;
+  }
+
   // NOTE Name
   updateName(value: string): void {
     this.name = value;
@@ -41,7 +57,7 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   private set name(value: string) {
-    this.name = value;
+    this.props.name = value;
   }
 
   // NOTE CPF
@@ -54,7 +70,7 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   private set cpf(value: number) {
-    this.cpf = value;
+    this.props.cpf = value;
   }
 
   // NOTE Email
@@ -67,11 +83,11 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   private set email(value: string) {
-    this.email = value;
+    this.props.email = value;
   }
 
   // NOTE Address
-  updateAddress(value: object): void {
+  updateAddress(value: IOptionalAddress): void {
     this.address = value;
   }
 
@@ -79,8 +95,8 @@ export class UserEntity extends Entity<IUserProps> {
     return this.props.address;
   }
 
-  private set address(value: object) {
-    this.address = value;
+  private set address(value: IOptionalAddress) {
+    this.props.address = value as IAddress;
   }
 
   // NOTE Active
@@ -93,7 +109,7 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   private set active(value: boolean) {
-    this.active = value;
+    this.props.active = value;
   }
 
   // NOTE createAt
@@ -111,6 +127,6 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   private set updateAt(value: Date) {
-    this.updateAt = value;
+    this.props.updateAt = value;
   }
 }
