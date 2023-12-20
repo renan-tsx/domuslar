@@ -24,4 +24,32 @@ export class UserEntity {
     this.props.active = this.props.active ?? true;
     this.props.perfil = this.props.perfil ?? 'SAS';
   }
+
+  get name() {
+    return this.props.name;
+  }
+
+  get cpf() {
+    return this.props.cpf;
+  }
+
+  get email() {
+    return this.props.email;
+  }
+
+  get address() {
+    return this.props.address;
+  }
+
+  get active() {
+    return this.props.active;
+  }
+
+  get createAt() {
+    return this.props.createAt;
+  }
+
+  get updateAt() {
+    return this.props.updateAt;
+  }
 }
