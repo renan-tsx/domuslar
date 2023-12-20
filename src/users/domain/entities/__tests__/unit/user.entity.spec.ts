@@ -1,26 +1,12 @@
-import { faker } from '@faker-js/faker';
-import { generate as CpfGenetate } from 'gerador-validador-cpf';
+import { UserDataBuilder } from '@/users/domain/testing/helpers/user-data-builder';
 import { IUserProps, UserEntity } from '../../user.entity';
 
 describe('UserEntity unit tests', () => {
   let props: IUserProps;
   let sut: UserEntity;
-  beforeEach(() => {
-    props = {
-      name: faker.person.fullName(),
-      cpf: Number(CpfGenetate()),
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      address: {
-        street: faker.location.street(),
-        number: faker.number.int().toString(),
-        city: faker.location.city(),
-        state: faker.location.state(),
-        country: faker.location.country(),
-        zipcode: faker.location.zipCode(),
-      },
-    };
 
+  beforeEach(() => {
+    props = UserDataBuilder({});
     sut = new UserEntity(props);
   });
   it('Constructor method', () => {
