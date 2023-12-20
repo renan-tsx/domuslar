@@ -1,9 +1,11 @@
+import { Entity } from '@/shared/domain/entities/entity';
+
 export interface IUserProps {
   name: string;
   cpf: number;
   email: string;
   password: string;
-  perfil?: string;
+  perfil: string;
   address: {
     street: string;
     number: string;
@@ -12,13 +14,17 @@ export interface IUserProps {
     country: string;
     zipcode: string;
   };
-  active?: boolean;
-  createAt?: Date;
-  updateAt?: Date;
+  active: boolean;
+  createAt: Date;
+  updateAt: Date;
 }
 
-export class UserEntity {
-  constructor(public readonly props: IUserProps) {
+export class UserEntity extends Entity<IUserProps> {
+  constructor(
+    public readonly props: IUserProps,
+    id?: string,
+  ) {
+    super(props, id);
     this.props.createAt = this.props.createAt ?? new Date();
     this.props.updateAt = this.props.updateAt ?? new Date();
     this.props.active = this.props.active ?? true;
