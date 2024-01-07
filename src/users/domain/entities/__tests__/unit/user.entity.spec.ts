@@ -45,19 +45,19 @@ describe('UserEntity unit tests', () => {
   it('Getter of cpf field', () => {
     expect(sut.props.cpf).toBeDefined();
     expect(sut.props.cpf).toEqual(props.cpf);
-    expect(typeof sut.props.cpf).toBe('number');
+    expect(typeof sut.props.cpf).toBe('string');
   });
 
   it('Setter of cpf field', () => {
-    sut['cpf'] = 21286438055;
-    expect(sut.props.cpf).toEqual(21286438055);
-    expect(typeof sut.props.cpf).toBe('number');
+    sut['cpf'] = '21286438055';
+    expect(sut.props.cpf).toEqual('21286438055');
+    expect(typeof sut.props.cpf).toBe('string');
   });
 
   it('Should update a cpf', () => {
-    sut.updateCpf(34804138030);
-    expect(sut.props.cpf).toEqual(34804138030);
-    expect(typeof sut.props.cpf).toBe('number');
+    sut.updateCpf('34804138030');
+    expect(sut.props.cpf).toEqual('34804138030');
+    expect(typeof sut.props.cpf).toBe('string');
   });
 
   // NOTE email

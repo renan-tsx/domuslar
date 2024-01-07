@@ -4,7 +4,7 @@ import { IUserProps } from '../../entities/user.entity';
 
 interface Props {
   name?: string;
-  cpf?: number;
+  cpf?: string;
   email?: string;
   password?: string;
   perfil?: string;
@@ -24,7 +24,7 @@ interface Props {
 export function UserDataBuilder(props: Props): IUserProps {
   return {
     name: props.name ?? faker.person.fullName(),
-    cpf: props.cpf ?? Number(CpfGenetate()),
+    cpf: props.cpf ?? CpfGenetate(),
     email: props.email ?? faker.internet.email(),
     password: props.password ?? faker.internet.password(),
     perfil: props.perfil ?? 'SAS',
