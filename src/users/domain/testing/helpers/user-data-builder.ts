@@ -21,6 +21,13 @@ interface Props {
   updateAt?: Date;
 }
 
+/**
+ * Cria os dados do usuário
+ * @param props Propriedades opcionais para personalizar os dados do usuário
+ * @returns IUserProps - Objeto contendo os dados do usuário
+ * @example UserDataBuilder({})
+ * @example UserDataBuilder({name: 'John Doe'})
+ */
 export function UserDataBuilder(props: Props): IUserProps {
   return {
     name: props.name ?? faker.person.fullName(),
