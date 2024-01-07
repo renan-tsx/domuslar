@@ -1,4 +1,5 @@
 import { Entity } from '@/shared/domain/entities/entity';
+import { UserValidatorFactory } from '../validators/user.validator';
 
 export interface IAddress {
   street: string;
@@ -12,7 +13,7 @@ export interface IAddress {
 export interface IOptionalAddress extends Partial<IAddress> {}
 export interface IUserProps {
   name: string;
-  cpf: number;
+  cpf: string;
   email: string;
   password: string;
   perfil: string;
@@ -27,6 +28,7 @@ export class UserEntity extends Entity<IUserProps> {
     public readonly props: IUserProps,
     id?: string,
   ) {
+    UserEntity.validate(props);
     super(props, id);
     this.props.createAt = this.props.createAt ?? new Date();
     this.props.updateAt = this.props.updateAt ?? new Date();
@@ -36,6 +38,7 @@ export class UserEntity extends Entity<IUserProps> {
 
   // NOTE perfil
   updatePerfil(value: string): void {
+    UserEntity.validate({ ...this.props, perfil: value });
     this.perfil = value;
   }
 
@@ -49,6 +52,7 @@ export class UserEntity extends Entity<IUserProps> {
 
   // NOTE Name
   updateName(value: string): void {
+    UserEntity.validate({ ...this.props, name: value });
     this.name = value;
   }
 
@@ -61,7 +65,8 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   // NOTE CPF
-  updateCpf(value: number): void {
+  updateCpf(value: string): void {
+    UserEntity.validate({ ...this.props, cpf: value });
     this.cpf = value;
   }
 
@@ -69,12 +74,13 @@ export class UserEntity extends Entity<IUserProps> {
     return this.props.cpf;
   }
 
-  private set cpf(value: number) {
+  private set cpf(value: string) {
     this.props.cpf = value;
   }
 
   // NOTE Email
   updateEmail(value: string): void {
+    UserEntity.validate({ ...this.props, email: value });
     this.email = value;
   }
 
@@ -88,6 +94,7 @@ export class UserEntity extends Entity<IUserProps> {
 
   // NOTE Address
   updateAddress(value: IOptionalAddress): void {
+    UserEntity.validate({ ...this.props, address: value } as IUserProps);
     this.address = value;
   }
 
@@ -101,6 +108,7 @@ export class UserEntity extends Entity<IUserProps> {
 
   // NOTE Active
   upadateActive(value: boolean): void {
+    UserEntity.validate({ ...this.props, active: value });
     this.active = value;
   }
 
@@ -119,6 +127,7 @@ export class UserEntity extends Entity<IUserProps> {
 
   // NOTE updateAt
   upadateUpdateAt(value: Date): void {
+    UserEntity.validate({ ...this.props, updateAt: value });
     this.updateAt = value;
   }
 
@@ -128,5 +137,10 @@ export class UserEntity extends Entity<IUserProps> {
 
   private set updateAt(value: Date) {
     this.props.updateAt = value;
+  }
+
+  static validate(props: IUserProps) {
+    const validator = UserValidatorFactory.create();
+    validator.validate(props);
   }
 }
