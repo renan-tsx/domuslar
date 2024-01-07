@@ -1,6 +1,11 @@
 import * as libClassValidator from 'class-validator';
 import { ClassValidatorFields } from '../../class-validator-fields';
 
+/**
+ * NOTE Testes unitários para a classe ClassValidatorFields.
+ * É esperado que o teste valide o comportamento da classe.
+ */
+
 class stubClassValidatorFields extends ClassValidatorFields<{
   field: string;
 }> {}

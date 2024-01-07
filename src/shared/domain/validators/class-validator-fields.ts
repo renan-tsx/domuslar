@@ -2,8 +2,8 @@ import { validateSync } from 'class-validator';
 import { FieldsErrors, IValidatorFields } from './validator-fields.interface';
 
 /**
- * NOTE Classe abstrata que utiliza o class-validator para validar as propriedade de uma classe.
- * @template PropsValidated - O tipo genérico representa as propriedades a serem validadas.
+ * NOTE Classe abstrata utiliza o class-validator para validar as propriedade.
+ * @template PropsValidated - Representa as propriedades a serem validadas.
  */
 export abstract class ClassValidatorFields<PropsValidated>
   implements IValidatorFields<PropsValidated>
