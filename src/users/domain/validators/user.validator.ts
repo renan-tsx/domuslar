@@ -3,12 +3,14 @@ import {
   IsBoolean,
   IsDate,
   IsEmail,
+  IsIn,
   IsNotEmpty,
   IsOptional,
   IsString,
   MaxLength,
 } from 'class-validator';
 import { IUserProps } from '../entities/user.entity';
+``;
 
 class Address {
   @MaxLength(255)
@@ -67,8 +69,11 @@ export class UserRules {
   @MaxLength(100)
   @IsString()
   @IsOptional()
-  perfil: string;
+  @IsIn(['SAS'], { message: 'perfil must be SAS' })
+  perfil: 'SAS';
 
+  // @ValidateNested()
+  // @Type(() => Address)
   address: Address;
 
   @IsBoolean()
