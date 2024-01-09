@@ -7,7 +7,7 @@ interface Props {
   cpf?: string;
   email?: string;
   password?: string;
-  perfil?: string;
+  perfil?: 'SAS';
   address?: {
     street?: string;
     number?: string;

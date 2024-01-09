@@ -16,7 +16,7 @@ export interface IUserProps {
   cpf: string;
   email: string;
   password: string;
-  perfil: string;
+  perfil: 'SAS';
   address: IAddress;
   active: boolean;
   createAt: Date;
@@ -37,7 +37,7 @@ export class UserEntity extends Entity<IUserProps> {
   }
 
   // NOTE perfil
-  updatePerfil(value: string): void {
+  updatePerfil(value: 'SAS'): void {
     UserEntity.validate({ ...this.props, perfil: value });
     this.perfil = value;
   }
@@ -46,7 +46,7 @@ export class UserEntity extends Entity<IUserProps> {
     return this.props.perfil;
   }
 
-  private set perfil(value: string) {
+  private set perfil(value: 'SAS') {
     this.props.perfil = value;
   }
 
